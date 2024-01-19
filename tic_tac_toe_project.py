@@ -10,7 +10,7 @@
 board = [[1, 2, 3],
          [4, 5, 6],
          [7, 8, 9]]
-move_list, no_of_play, move_list_0, play_on, bs = [], 0, [], False, board
+move_list, no_of_play, move_list_0, play_on, bs, victor = [], 0, [], False, board, ['', False]
 
 
 def display_board(board_):
@@ -85,74 +85,77 @@ def victory_checker(board_vc):
         return '', False
 
 
-def enter_move(board_u, move_list_u, play_on_u):
-    global  no_of_play
-    victor = victory_checker(board_u)
-    no_of_play += 1
-    print('enter move ' + str(no_of_play))
-    if victor[1]:
-        pass
+def winner(victor_w):
+    if victor_w == 'X' :
+        return "you loose buddy !!!"
+    elif victor_w == "O":
+        return ' hurray i won buddy'
+    elif victor_w == 'tie':
+        return 'it is a tie'
 
-    else:
-        while not victor[1]:
-            victor = victory_checker(board_u)
-            display_board(board_u)
-            if no_of_play <  10:
-                user_input = input('Enter your move :  ').strip()
+
+def enter_move(board_u, move_list_u):
+    global no_of_play, victor
+    victor = victory_checker(board_u)
+    if victor[1]:
+        display_board(board)
+        print(winner(victor[0]))
+    if no_of_play < 10 and not victor[1]:
+        display_board(board_u)
+
+        user_input = input('Enter your move :  ').strip()
+        user_input = int(user_input)
+
+        while user_input > 10 or user_input in move_list_u:
+            if user_input > 10:
+                user_input = input('Please choose between 1 and 9 :')
                 user_input = int(user_input)
 
-                while user_input > 10 or user_input in move_list_u:
-                    if user_input > 10:
-                        user_input = input('Please choose between 1 and 9 :')
-                        user_input = int(user_input)
+            if user_input in move_list:
+                user_input = input('choosen !!! please re Enter your move :')
+                user_input = int(user_input)
 
-                    if user_input in move_list:
-                        user_input = input('choosen !!! please re Enter your move :')
-                        user_input = int(user_input)
+        move_list_u.append(user_input)
+        user_input_init = make_list_of_free_fields(board_u, user_input)
+        board_u[user_input_init[0]][user_input_init[1]] = 'O'
+        if not victor[1]:
+            draw_move(board_u, move_list_u)
+        else:
+            print(str(victor[0]) + ' we are together')
 
-                move_list_u.append(user_input)
-                user_input_init = make_list_of_free_fields(board_u, user_input)
-                board_u[user_input_init[0]][user_input_init[1]] = 'O'
-                if victor[1]:
-                    break
-            # while not play_on_u:
-            #     draw_move(board_u, move_list_u, play_on_u)
-            #     play_on_u = True
-
-            print('no of play + ' + str(no_of_play))
-            display_board(board_u)
-            # draw_move(board, move_list)
-            # The function accepts the board's current status, asks the user about their move,
+    no_of_play += 1
 
 
 from random import randint, randrange
 
 
-def draw_move(board_c, move_list_c, play_on_c):
-    global no_of_play
-    vicor = victory_checker(board)
-    if vicor[1] or no_of_play ==10 :
-        play_on_c = False
+def draw_move(board_c, move_list_c):
+    global no_of_play, play_on, computer_move, victor
+    # print(victor)
+    print('me')
+    victor = victory_checker(board_c)
+    if victor[1]:
         display_board(board_c)
-    else:
+        print(winner(victor[0]))
+    if not victor[1] and no_of_play < 10:
         if no_of_play <= 9:
             computer_move = randint(1, 9)
 
             while computer_move in move_list_c:
                 computer_move = randint(1, 9)
 
+        move_list_c.append(computer_move)
+        computer_move_init = (make_list_of_free_fields(board_c, computer_move))
+        board_c[computer_move_init[0]][computer_move_init[1]] = 'X'
+        if not victor[1]:
+            enter_move(board_c, move_list_c)
 
-            move_list_c.append(computer_move)
-            computer_move_init = (make_list_of_free_fields(board_c, computer_move))
-            board_c[computer_move_init[0]][computer_move_init[1]] = 'X'
-            no_of_play += 1
-            # while not play_on_c:
-            #     enter_move(board_c, move_list_c, play_on_c)
-            #     play_on_c = True
-    display_board(board)
+        no_of_play += 1
 
-    print('draw move '+ str(no_of_play))
-        # The functon draws the computer's move and updates the board.
+        # while not play_on_c:
+        #     enter_move(board_c, move_list_c, play_on_c)
+        #     play_on_c = True
+    # The functon draws the computer's move and updates the board.
 
 
 #
@@ -160,13 +163,14 @@ def draw_move(board_c, move_list_c, play_on_c):
 #     play_list = [0,1,2,3,4,5,6,7,8,9]
 #     draw_move(board_p, move_list_p, no_of_play_p)
 #     enter_move(board_p, move_list_p, no_of_play_p)
-def first_player(board_f, move_list_f, play_on_fp):
+def first_player(board_f, move_list_f):
     game_starter = randrange(2)
     if game_starter == 1:
-        draw_move(board_f, move_list_f, play_on_fp)
+        draw_move(board_f, move_list_f)
     elif game_starter == 0:
-        enter_move(board_f, move_list_f, play_on_fp)
+        enter_move(board_f, move_list_f)
 
 
 # first_player(board, move_list, no_of_play, play_on)
-enter_move(board, move_list, play_on)
+enter_move(board, move_list)
+display_board(board)
