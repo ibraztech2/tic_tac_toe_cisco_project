@@ -150,6 +150,7 @@ def draw_move(board_c, move_list_c, play_on_c):
             #     enter_move(board_c, move_list_c, play_on_c)
             #     play_on_c = True
     display_board(board)
+
     print('draw move '+ str(no_of_play))
         # The functon draws the computer's move and updates the board.
 
