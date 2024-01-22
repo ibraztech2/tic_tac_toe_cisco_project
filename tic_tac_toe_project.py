@@ -1,3 +1,4 @@
+#! i am called shabang
 """"
  the first step is to list all the variable for  the game which are:
   no_of_play
@@ -6,11 +7,18 @@
 
  the second is to
 """
+import sys
+if __name__ == "__main__":
+    print('dont do that')
+    """ mamke the program to exit if someone tries to run is as stand alone"""
+    sys.exit()
+
+
 
 board = [[1, 2, 3],
          [4, 5, 6],
          [7, 8, 9]]
-move_list, no_of_play, move_list_0, play_on, bs, victor = [], 0, [], False, board, ['', False]
+move_list, no_of_play, move_list_0, play_on, bs, victor, continue_playing = [], 0, [], False, board, ['', False], True
 
 
 def display_board(board_):
@@ -86,7 +94,7 @@ def victory_checker(board_vc):
 
 
 def winner(victor_w):
-    if victor_w == 'X' :
+    if victor_w == 'X':
         return "you loose buddy !!!"
     elif victor_w == "O":
         return ' hurray i won buddy'
@@ -95,33 +103,36 @@ def winner(victor_w):
 
 
 def enter_move(board_u, move_list_u):
-    global no_of_play, victor
+    global no_of_play, victor, continue_playing
     victor = victory_checker(board_u)
     if victor[1]:
-        display_board(board)
         print(winner(victor[0]))
-    if no_of_play < 10 and not victor[1]:
-        display_board(board_u)
+    if continue_playing:
+        if no_of_play < 10 and not victor[1]:
+            display_board(board_u)
 
-        user_input = input('Enter your move :  ').strip()
-        user_input = int(user_input)
+            user_input = input('Enter your move :  ').strip()
+            user_input = int(user_input)
 
-        while user_input > 10 or user_input in move_list_u:
-            if user_input > 10:
-                user_input = input('Please choose between 1 and 9 :')
-                user_input = int(user_input)
+            while user_input > 10 or user_input in move_list_u:
+                if user_input > 10:
+                    user_input = input('Please choose between 1 and 9 :')
+                    user_input = int(user_input)
 
-            if user_input in move_list:
-                user_input = input('choosen !!! please re Enter your move :')
-                user_input = int(user_input)
+                if user_input in move_list:
+                    user_input = input('choosen !!! please re Enter your move :')
+                    user_input = int(user_input)
 
-        move_list_u.append(user_input)
-        user_input_init = make_list_of_free_fields(board_u, user_input)
-        board_u[user_input_init[0]][user_input_init[1]] = 'O'
-        if not victor[1]:
-            draw_move(board_u, move_list_u)
-        else:
-            print(str(victor[0]) + ' we are together')
+            move_list_u.append(user_input)
+            user_input_init = make_list_of_free_fields(board_u, user_input)
+            board_u[user_input_init[0]][user_input_init[1]] = 'O'
+            if no_of_play == 9:
+                continue_playing = False
+                return None
+            if not victor[1]:
+                draw_move(board_u, move_list_u)
+            else:
+                print(str(victor[0]) + ' we are together')
 
     no_of_play += 1
 
@@ -131,11 +142,8 @@ from random import randint, randrange
 
 def draw_move(board_c, move_list_c):
     global no_of_play, play_on, computer_move, victor
-    # print(victor)
-    print('me')
     victor = victory_checker(board_c)
     if victor[1]:
-        display_board(board_c)
         print(winner(victor[0]))
     if not victor[1] and no_of_play < 10:
         if no_of_play <= 9:
@@ -151,26 +159,19 @@ def draw_move(board_c, move_list_c):
             enter_move(board_c, move_list_c)
 
         no_of_play += 1
+def play():
+    first_player(board, move_list)
 
-        # while not play_on_c:
-        #     enter_move(board_c, move_list_c, play_on_c)
-        #     play_on_c = True
-    # The functon draws the computer's move and updates the board.
-
-
-#
-# def play_on(board_p, move_list_p, no_of_play_p):
-#     play_list = [0,1,2,3,4,5,6,7,8,9]
-#     draw_move(board_p, move_list_p, no_of_play_p)
-#     enter_move(board_p, move_list_p, no_of_play_p)
 def first_player(board_f, move_list_f):
     game_starter = randrange(2)
     if game_starter == 1:
         draw_move(board_f, move_list_f)
     elif game_starter == 0:
         enter_move(board_f, move_list_f)
+    display_board(board_f)
 
-
-# first_player(board, move_list, no_of_play, play_on)
-enter_move(board, move_list)
-display_board(board)
+if __name__ == "__main__":
+    print('i am a stand alone program')
+    play()
+else:
+    print(' Na somebody end me oooo')
