@@ -198,7 +198,17 @@ def first_player(board_f, move_list_f):
     elif game_starter == 0:
         enter_move(board_f, move_list_f)
     display_board(board_f)
-
+play_again = True
+# while play_again:
+#     first_player(board,move_list)
+#     ask_if_play_again  = input("Do you want to play again ? (Yes/No) :").strip().lower()
+#     if ask_if_play_again == 'yes':
+#         play_again = True
+#     elif ask_if_play_again == "no":
+#         play_again = False
+#     else:
+#         print("wrong input please try again ")
+#         play()
 
 if __name__ == "__main__":
     print('i am a stand alone program')
