@@ -7,12 +7,12 @@
 
  the second is to
 """
-# import sys
-#
-# if __name__ == "__main__":
-#     print('dont do that')
-#     """ mamke the program to exit if someone tries to run is as stand alone"""
-#     sys.exit()
+import sys
+
+if __name__ == "__main__":
+    print('i apologise you can\'t ran me a stad alone program')
+    """ mamke the program to exit if someone tries to run is as stand alone"""
+    sys.exit()
 
 board = [[1, 2, 3],
          [4, 5, 6],
