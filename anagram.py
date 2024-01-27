@@ -1,11 +1,3 @@
-alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', "v",
-             'u',
-             'w', 'x', 'y', 'z']
-
-place_value = 5
-check = False
-space = []
-# encrypt_decrypt = ""
 
 
 def encrypt_fun(string, alphabets):
@@ -84,7 +76,15 @@ def ask_crypt():
     else:
         print("please try again you \"ve entered Wrong input !!!")
         ask_crypt()
+alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', "v",
+             'u',
+             'w', 'x', 'y', 'z']
+
+place_value = 5
+check = False
+space = []
+# encrypt_decrypt = ""
+
+
 if __name__ == "__main__":
     ask_crypt()
-
-
