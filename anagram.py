@@ -1,11 +1,15 @@
-alphabets = ['e', 'd', 'c', 'b', 'a', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',"v", 'u',
+alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', "v",
+             'u',
              'w', 'x', 'y', 'z']
-place_value = 0
+
+place_value = 5
 check = False
 space = []
+# encrypt_decrypt = ""
 
 
 def encrypt_fun(string, alphabets):
+    global encrypt_list
     # encrypt = input("Enter word to encrypt").lower().split()
     encrypt_list = []
 
@@ -16,19 +20,24 @@ def encrypt_fun(string, alphabets):
             check = True
             string_index = alphabets.index(me)
             if string_index <= 20:
-                encrypt_list.append(alphabets[5 + string_index])
+                encrypt_list.append(alphabets[place_value + string_index])
             else:
-                encrypt_list.append(alphabets[25 - string_index])
-            print(string_index,end="   ")
+                encrypt_list.append(alphabets[-(1 + string_index)])
+            # print(f"\" " + str(string_index), end=f" {me}  ")
+
     # print(encrypt_list)
     print("")
     for me in encrypt_list:
-        print(me, end=" ")
+        print(me, end="")
     print("")
+
+
+check_index = ""
 
 
 def dencrypt(string, alphabets):
     # encrypt = input("Enter word to encrypt").lower().split()
+    global check_index
     encrypt_list = []
 
     for me in string:
@@ -36,31 +45,46 @@ def dencrypt(string, alphabets):
             encrypt_list.append(" ")
         if me in alphabets:
             check = True
-
             string_index = alphabets.index(me)
-            print(string_index,end='   ')
-            if string_index <= 20:
-                encrypt_list.append(alphabets[string_index - 5])
+
+            if string_index > 4:
+                check_index = string_index - place_value
+                encrypt_list.append(alphabets[check_index])
             else:
-                if string_index > 20:
-                    string_index = 0
-                # print(string_index)
-                # print(encrypt_list)
-                # print(alphabets)
-                encrypt_list.append(alphabets[(24 - string_index)])
-    # print(encrypt_list)
+                encrypt_list.append(alphabets[-(1 + string_index)])
+            # print(f"\" " + str(string_index), end=f" {me} ,++{check_index}  ,{alphabets[string_index]} ")
     print(" ")
     for me in encrypt_list:
-        print(me, end=" ")
+        print(me, end="")
     print("")
 
 
-# dencrypt("n fr stgqj dcba", alphabets)
-# dencrypt("n fr stgqj", alphabets)
-# dencrypt("n fr stgqjn fr stgqj ajgxf ", alphabets)
-print("encrypt")
-encrypt_fun(str(alphabets),alphabets)
-print("dencrypt")
-dencrypt("f g h i j k l m n o p q r s t u w x y z e d c b a",alphabets)
-# encrypt_fun("i am noble", alphabets)
-# encrypt_fun("i am noble wxyz", alphabets)
+def ask_crypt():
+    ask = input("Do you want to encrypt :").lower().strip()
+    if ask == "yes":
+        plac_Valu_ = input("Place Value : ").strip()
+        if plac_Valu_.isdigit() and plac_Valu_ == place_value:
+            string = input("What do you want to encrypt :")
+            encrypt_fun(string, alphabets)
+            string2 = input("Do you wish to encrypt what you\"ve just encrypted").lower().strip()
+            if string2 == "yes":
+                dencrypt(str(encrypt_list),alphabets)
+        else:
+            print("wrong place value  !!!\nPlease try again !!!")
+            ask_crypt()
+    elif ask == "no":
+        ask2 = input("Do you wish to dencrypt then :").strip().lower()
+        if ask2 == " yes":
+            string = input("What do you want to encrypt (yes/no):").strip().lower()
+            dencrypt(string, alphabets)
+            print("any")
+        elif ask2 == "no":
+            print("what do you want to do then ?")
+            ask_crypt()
+    else:
+        print("please try again you \"ve entered Wrong input !!!")
+        ask_crypt()
+if __name__ == "__main__":
+    ask_crypt()
+
+
