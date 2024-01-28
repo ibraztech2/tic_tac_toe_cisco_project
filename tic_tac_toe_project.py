@@ -1,8 +1,8 @@
 #! i am called shabang
 """"
- the first step is to list all the variable for  the game which are:
+ the first step is to __list all the variable for  the game which are:
   no_of_play
-  board (list of alll the 9 boxes)
+  board (__list of alll the 9 boxes)
   move_?( bool type ) to break out of the loop when either there is a winner or tie
 
  the second is to
@@ -17,7 +17,7 @@ if __name__ == "__main__":
 board = [[1, 2, 3],
          [4, 5, 6],
          [7, 8, 9]]
-move_list, no_of_play, move_list_0, play_on, bs, victor, continue_playing, player_2_bool, player_1_name,player_2_name = [], 0, [], False, board, ['',False], True, False,'',''
+move_list, no_of_play , move_list_0, play_on, bs, victor, continue_playing, player_2_bool, player_1_name,player_2_name = [], 0, [], False, board, ['',False], True, False,'',''
 
 
 

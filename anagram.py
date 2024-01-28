@@ -1,5 +1,3 @@
-
-
 def encrypt_fun(string, alphabets):
     global encrypt_list
     # encrypt = input("Enter word to encrypt").lower().split()
@@ -60,7 +58,7 @@ def ask_crypt():
             encrypt_fun(string, alphabets)
             string2 = input("Do you wish to encrypt what you\"ve just encrypted").lower().strip()
             if string2 == "yes":
-                dencrypt(str(encrypt_list),alphabets)
+                dencrypt(str(encrypt_list), alphabets)
         else:
             print("wrong place value  !!!\nPlease try again !!!")
             ask_crypt()
@@ -76,6 +74,8 @@ def ask_crypt():
     else:
         print("please try again you \"ve entered Wrong input !!!")
         ask_crypt()
+
+
 alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', "v",
              'u',
              'w', 'x', 'y', 'z']
