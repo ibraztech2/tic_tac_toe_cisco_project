@@ -37,7 +37,7 @@ def display_board(board_):
 
 
 def make_list_of_free_fields(board_free, user):
-    # checks the input, and updates the board according to the user's decision.
+    # checks the input, and updates the board according to the user'__s decision.
 
     free_board = []
     for i in board_free:

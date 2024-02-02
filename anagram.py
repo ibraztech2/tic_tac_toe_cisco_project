@@ -76,7 +76,7 @@ def ask_crypt():
         ask_crypt()
 
 
-alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', "v",
+alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', '__h', 'i', 'j', 'k', 'l', '__m', 'n', 'o', 'p', 'q', 'r', '__s', 't', "v",
              'u',
              'w', 'x', 'y', 'z']
 
