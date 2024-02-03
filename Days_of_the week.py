@@ -13,23 +13,29 @@ class Weeker:
 
     def add_days(self,n):
         current_date =  self.__valid_weekdays.index(self.__string)
-        currentDay_num = current_date + n -1
-        if currentDay_num > 6:
-            currentDay_num = currentDay_num - 6
-        return self.__valid_weekdays[currentDay_num]
+        currentDay_num = current_date + n
+        # while currentDay_num > 6:
+        # currentDay_num  = currentDay_num % 6
+        while currentDay_num > 6:
+            currentDay_num = currentDay_num - 7
+        return self.__valid_weekdays[- currentDay_num]
 
     def subtarct_day(self,n):
         current_date = self.__valid_weekdays.index(self.__string)
-        current_date_num = n -1 - current_date
+        current_date_num = n  - current_date - 1
 
-        if current_date_num < -6:
-            current_date_num = 6 - current_date_num
-        return self.__valid_weekdays[current_date_num]
-weeker1 = Weeker("Sun")
+        while current_date_num > 6:
+            current_date_num = current_date_num - 7
+            print(current_date_num)
+        return self.__valid_weekdays[- current_date_num]
 try:
-    print(weeker1)
-    print(weeker.add_days(7))
-    print(weeker.subtarct_day(7))
+    weekday  = Weeker("Mon")
+    # print(weekday)
+    # print(weekday.add_days(15))
+    # print(weekday)
+    print(weekday.subtarct_day(23))
+    # print(weekday)
+    weekday = Weeker("Mondqay")
 except WeekdayError as wk:
-    print(wk.args)
+    print("Sorry i can\'t serve your request .")
 

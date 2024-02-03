@@ -78,7 +78,7 @@ def ask_crypt():
 
 alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', '__h', 'i', 'j', 'k', 'l', '__m', 'n', 'o', 'p', 'q', 'r', '__s', 't', "v",
              'u',
-             'w', 'x', 'y', 'z']
+             'w', 'x', '__y', 'z']
 
 place_value = 5
 check = False
